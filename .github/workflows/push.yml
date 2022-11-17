@@ -21,7 +21,7 @@ jobs:
           cyclonedx-py -r -o './bom.json' --format 'json' --force
       # # Transmit a copy of our generated SBOM to Manifest
       - name: Transmit generated SBOM to Manifest
-        uses: manifest-cyber/manifest-github-action@v2.0.0
+        uses: manifest-cyber/manifest-github-action@db-debug3
         id: transmit
         with:
           # Generate an API key at https://app.manifestcyber.com/organization
