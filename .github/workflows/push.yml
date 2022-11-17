@@ -5,15 +5,13 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.10"]
+    # Basic setup for Python
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python 3.10
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: '3.10'
       # Install dependencies and generate an SBOM via requirements.txt and cyclonedx-py
       - name: Install dependencies and generate SBOM
         run: |
@@ -23,7 +21,7 @@ jobs:
           cyclonedx-py -r -o './bom.json' --format 'json' --force
       # Transmit a copy of our generated SBOM to Manifest
       - name: Transmit generated SBOM to Manifest
-        uses: manifest-cyber/manifest-github-action
+        uses: manifest-cyber/manifest-github-action@main
         id: transmit
         with:
           # Generate an API key at https://app.manifestcyber.com/organization
