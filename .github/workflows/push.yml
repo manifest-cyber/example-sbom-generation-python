@@ -13,13 +13,13 @@ jobs:
         with:
           python-version: '3.9'
       # Install dependencies and generate an SBOM via requirements.txt and cyclonedx-py
-      # - name: Install dependencies and generate SBOM
-      #   run: |
-      #     python -m pip install --upgrade pip
-      #     pip install cyclonedx-bom
-      #     if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-      #     cyclonedx-py -r -o './bom.json' --format 'json' --force
-      # # Transmit a copy of our generated SBOM to Manifest
+      - name: Install dependencies and generate SBOM
+        run: |
+          python -m pip install --upgrade pip
+          pip install cyclonedx-bom
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          cyclonedx-py -r -o './bom.json' --format 'json' --force
+      # Transmit a copy of our generated SBOM to Manifest
       - name: Transmit generated SBOM to Manifest
         uses: manifest-cyber/manifest-github-action@main
         id: transmit
@@ -27,5 +27,5 @@ jobs:
           # Generate an API key at https://app.manifestcyber.com/organization
           # Store the key as a secret in Github, and reference it below
           # Do not share this key - this allows the holder to upload SBOM's to Manifest on your behalf
-          apiKey: ${{ secrets.MANIFEST_API_KEY }}
+          apiKey: ${{ secrets.TEMP_TESTING_MANIFEST_API_KEY }}
           bomFilePath: "./bom.json"
