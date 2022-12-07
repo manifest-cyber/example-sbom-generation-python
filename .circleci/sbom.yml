@@ -1,0 +1,26 @@
+version: 2.1
+orbs:
+  sbom-transmitter: manifest/sbom-transmitter@0.2.1
+
+filters: &filters
+  tags:
+    only: /.*/
+
+jobs:
+  sbom:
+    docker:
+      - image: cimg/base:current
+    steps:
+      - checkout
+      - sbom-transmitter/install-syft
+      - sbom-transmitter/run-syft:
+          purl: ./
+          file: python-example-sbom.json
+      - sbom-transmitter/transmit: 
+          sbom-file-path: python-example-sbom.json
+
+workflows:
+  sbom:
+    jobs:
+      - sbom:
+          filters: *filters
