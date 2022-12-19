@@ -27,5 +27,5 @@ jobs:
           # Generate an API key at https://app.manifestcyber.com/organization
           # Store the key as a secret in Github, and reference it below
           # Do not share this key - this allows the holder to upload SBOM's to Manifest on your behalf
-          apiKey: ${{ secrets.TEMP_TESTING_MANIFEST_API_KEY }}
+          apiKey: ${{ secrets.MANIFEST_API_KEY }}
           bomFilePath: "./bom.json"
