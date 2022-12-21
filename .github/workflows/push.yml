@@ -29,3 +29,6 @@ jobs:
           # Do not share this key - this allows the holder to upload SBOM's to Manifest on your behalf
           apiKey: ${{ secrets.MANIFEST_API_KEY }}
           bomFilePath: "./bom.json"
+          sbom-version: v1.0.0
+          sbom-name: testing-for-name
+          sbom-output: cyclonedx-json
