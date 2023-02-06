@@ -37,4 +37,4 @@ jobs:
           bomFilePath: "./bom.json"
           sbom-version: ""
           sbom-name: testing-for-name
-          sbom-output: cyclonedx-json
+          sbom-output: spdx-json
