@@ -22,6 +22,7 @@ jobs:
       - uses: anchore/sbom-action@v0
         with:
           path: .
+          output-file: ./bom.json
           artifact-name: bom.json
           format: spdx-json
       # Transmit a copy of our generated SBOM to Manifest
