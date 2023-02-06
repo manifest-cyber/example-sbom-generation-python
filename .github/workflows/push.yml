@@ -21,8 +21,8 @@ jobs:
       #     cyclonedx-py -r -o './bom.json' --format 'json' --force
       - uses: anchore/sbom-action@v0
         with:
-          path: ./
-          output-file: ./
+          path: .
+          output-file: .
           artifact-name: bom
           format: spdx-json
       # Transmit a copy of our generated SBOM to Manifest
