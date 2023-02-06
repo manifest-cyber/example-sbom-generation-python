@@ -24,7 +24,7 @@ jobs:
           path: .
           output-file: ./bom.json
           artifact-name: bom.json
-          format: spdx-json
+          format: cyclonedx-json
       # Transmit a copy of our generated SBOM to Manifest
       - name: Transmit generated SBOM to Manifest
         uses: manifest-cyber/manifest-github-action@main
@@ -37,4 +37,4 @@ jobs:
           bomFilePath: "./bom.json"
           sbom-version: ""
           sbom-name: testing-for-name
-          sbom-output: spdx-json
+          sbom-output: cyclonedx-json
