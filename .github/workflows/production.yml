@@ -1,17 +1,27 @@
-name: Generate and Transmit SBOM
+name: Generate and Publish SBOM
 
-on: [push]
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - "main"
+
+
+permissions:
+  id-token: write
+  contents: read # This is required for actions/checkout@v2
 
 jobs:
-  build:
+  generate-and-publish-sbom:
     runs-on: ubuntu-latest
-    # Basic setup for Python
+
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python 3.10
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
       # Generate and transmita copy of our generated SBOM to Manifest
       - name: Transmit generated SBOM to Manifest
         uses: manifest-cyber/manifest-github-action@main
@@ -21,6 +31,4 @@ jobs:
           # Store the key as a secret in Github, and reference it below
           # Do not share this key - this allows the holder to upload SBOM's to Manifest on your behalf
           apiKey: ${{ secrets.MANIFEST_API_KEY }}
-          sbomVersion: ""
-          sbomName: testing-for-name
-          sbomOutput: cyclonedx-json
+    
