@@ -14,7 +14,7 @@ ipaddr==2.2.0
 lockfile==0.12.2
 lxml==6.1.0
 msgpack==0.6.2
-packaging==20.3
+packaging==20.9
 pep517==0.8.2
 Pillow==12.3.0
 progress==1.5
