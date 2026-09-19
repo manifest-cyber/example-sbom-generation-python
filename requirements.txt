@@ -1,7 +1,7 @@
 appdirs==1.4.4
 beautifulsoup4==4.15.0
 bs4==0.0.2
-CacheControl==0.12.6
+CacheControl==0.14.4
 certifi==2024.7.4
 chardet==3.0.4
 colorama==0.4.6
